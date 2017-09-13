@@ -23,7 +23,7 @@ class MIDIDevice(object):
         self.current_note = '-'
 
     def send(self, _input):
-        if self.training == 1:
+        if self.training:
             # Training
             for frame in _input:
                 for i, j in enumerate(frame): # for i, j in enumerate(step):
@@ -34,29 +34,6 @@ class MIDIDevice(object):
                         self.held_notes.remove(i)
                         self.outport.send(mido.Message('note_off', note=i+21, velocity=0))
                 #time.sleep(1/12)
-        
-        elif self.training == 2:
-            # Playback from dataset
-            #for frame in _input:
-            for i, j in enumerate(_input): # for i, j in enumerate(step):
-                if j > self.threshold and i not in self.held_notes:
-                    self.held_notes.add(i)
-                    self.outport.send(mido.Message('note_on', note=i+21, velocity= int(j*127), time=0))
-                if j <= self.threshold and i in self.held_notes:
-                    self.held_notes.remove(i)
-                    self.outport.send(mido.Message('note_off', note=i+21, velocity=0))
-                #time.sleep(1/720)
-
-        elif self.training == 3:
-            for frame in _input:
-                for i, j in enumerate(frame): # for i, j in enumerate(step):
-                    if j[0] > self.threshold and i not in self.held_notes:
-                        self.held_notes.add(i)
-                        self.outport.send(mido.Message('note_on', note=i+21, velocity= int(j[0] * 127), time=0))
-                    if j[0] <= self.threshold and i in self.held_notes:
-                        self.held_notes.remove(i)
-                        self.outport.send(mido.Message('note_off', note=i+21, velocity=0))
-                    #time.sleep(1/720)
 
     def receive(self):
         x = [i for i in self.inport.iter_pending()]
