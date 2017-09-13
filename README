@@ -9,20 +9,18 @@ python3 main.py --mode run
 
 Command line arguments include:
 
---flag			description (default value)
-
---mode			'train' or 'run' the network (run)
---data_dir		directory dataset is stored, must include 'melody' and 'chords' folders (dataset)
---save_dir		directory where model checkpoints are saved during training (save)
---num_units		number of units in each layer of the model (512)
---num_layers		number of layers in the model (1)
---batch_size		number of simultaneous batches to train on (1)
---seq_length		sequence length of each batch (64)
---num_epochs		number of times through the data set the model will train for (10)
---grad_clip		float value to clip gradients at (1.0)
---learning_rate		float value to set the AdamOptimizer learning rate at (0.001)
---output_keep_prob	float output dropout value (0.8)
---input_keep_prob	float input dropout value (0.8)
+--mode			'train' or 'run' the network 
+--data_dir		directory dataset is stored, must include 'melody' and 'chords' folders
+--save_dir		directory where model checkpoints are saved during training 
+--num_units		number of units in each layer of the model 
+--num_layers		number of layers in the model 
+--batch_size		number of simultaneous batches to train on 
+--seq_length		sequence length of each batch 
+--num_epochs		number of times through the data set the model will train for
+--grad_clip		float value to clip gradients at
+--learning_rate		float value to set the AdamOptimizer learning rate at 
+--output_keep_prob	float output dropout value 
+--input_keep_prob	float input dropout value 
 
 
 Ensure that melody data is in the form:
